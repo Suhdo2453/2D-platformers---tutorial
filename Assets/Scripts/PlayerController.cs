@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private int lastWallJumpDirection;
 
     //move
+    [Header("Movement")]
     public float movementSpeed = 10f;
     private Rigidbody2D rb;
     private float movementInputDirection;
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private bool canFlip;
 
     //jump
+    [Header("Jump")]
     public float jumpForce = 16f;
     public float groundCheckRadius;
     public int amountOfJumps = 1;
@@ -36,6 +38,7 @@ public class PlayerController : MonoBehaviour
     private bool checkJumpMultiplier;
 
     //wall sliding
+    [Header("Wall Sliding")]
     public Transform wallCheck;
     public float wallCheckDistance;
     public float wallSlidingSpeed;
@@ -43,10 +46,12 @@ public class PlayerController : MonoBehaviour
     private bool isWallSliding;
 
     //move air
+    [Header("Move Air")]
     public float movementForceInAir;
     public float airDragMultiplier = 0.95f;
 
     //wall jumping
+    [Header("Wall Jump")]
     public Vector2 wallHopDirection;
     public Vector2 wallJumpDirection;
     public float wallHopForce;
@@ -55,7 +60,8 @@ public class PlayerController : MonoBehaviour
     private int facingDirection = 1;
     private float wallJumpTimer;
 
-    //Ledge wall climp
+    //Ledge wall climb
+    [Header("Ledge wall climb")]
     public Transform ledgeCheck;
     public float ledgeClimbXOffset1 = 0f;
     public float ledgeClimbYOffset1 = 0f;
