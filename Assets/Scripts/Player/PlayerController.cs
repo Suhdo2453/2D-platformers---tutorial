@@ -84,6 +84,15 @@ public class PlayerController : MonoBehaviour
     private float lastImageXpos;
     private float lastDash = -100f;
 
+    [Header("Knockback")]
+    [SerializeField]
+    private float knockbackDuration;
+    [SerializeField]
+    private Vector2 knockbackSpeed;
+    private bool knockback;
+    private float knockbackStartTime;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -105,6 +114,7 @@ public class PlayerController : MonoBehaviour
         CheckJump();
         CheckLedgeClimb();
         CheckDash();
+        CheckKnockback();
     }
 
     private void FixedUpdate()
@@ -121,6 +131,27 @@ public class PlayerController : MonoBehaviour
         }
         else
             isWallSliding = false;
+    }
+
+    public bool GetDashStatus()
+    {
+        return isDashing;
+    }
+
+    public void Knockback(int direction)
+    {
+        knockback = true;
+        knockbackStartTime = Time.time;
+        rb.velocity = new Vector2(knockbackSpeed.x * direction, knockbackSpeed.y);
+    }
+
+    private void CheckKnockback()
+    {
+        if( Time.time >= knockbackStartTime + knockbackDuration && knockback)
+        {
+            knockback = false;
+            rb.velocity = new Vector2(0.0f, rb.velocity.y);
+        }
     }
 
     private void CheckLedgeClimb()
@@ -205,7 +236,7 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
 
-        if (movementInputDirection != 0)
+        if (Mathf.Abs(rb.velocity.x) >= 0.01f)
         {
             isWalking = true;
         }
@@ -280,13 +311,18 @@ public class PlayerController : MonoBehaviour
         lastImageXpos = transform.position.x;
     }
 
+    public int GetFacingDirection()
+    {
+        return facingDirection;
+    }
+
     private void CheckDash()
     {
         if(isDashing)
         {
             canMove = false;
             canFlip = false;
-            rb.velocity = new Vector2(dashSpeed * facingDirection, rb.velocity.y);
+            rb.velocity = new Vector2(dashSpeed * facingDirection, 0);
             dashTimeLeft -= Time.deltaTime;
 
             if(Mathf.Abs(transform.position.x - lastImageXpos) > distanceBetweenImages)
@@ -378,11 +414,11 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyMovement()
     {
-        if (!isGrounded && !isWallSliding && movementInputDirection == 0)
+        if (!isGrounded && !isWallSliding && movementInputDirection == 0 && !knockback)
         {
             rb.velocity = new Vector2(rb.velocity.x * airDragMultiplier, rb.velocity.y);
         }
-        else if(canMove)
+        else if(canMove && !knockback)
         {
             rb.velocity = new Vector2(movementSpeed * movementInputDirection, rb.velocity.y);
         }
@@ -397,9 +433,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void DisableFlip()
+    {
+        canFlip = false;
+    }
+
+    private void EnableFlip()
+    {
+        canFlip = true;
+    }
+
     private void Flip()
     {
-        if (!isWallSliding && canFlip)
+        if (!isWallSliding && canFlip && !knockback)
         {
             facingDirection *= -1;
             isFacingRight = !isFacingRight;
@@ -410,6 +456,6 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
-        Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y, wallCheck.position.z));
+        Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
     }
 }
