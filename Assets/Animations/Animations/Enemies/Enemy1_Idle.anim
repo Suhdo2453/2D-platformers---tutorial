@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Enemy1_Walk
+  m_Name: Enemy1_Idle
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,21 +20,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 2042429366, guid: beadde22e01b25140947220142c54a15, type: 3}
-    - time: 0.06666667
-      value: {fileID: -552738262, guid: beadde22e01b25140947220142c54a15, type: 3}
+      value: {fileID: 1924730873, guid: beadde22e01b25140947220142c54a15, type: 3}
     - time: 0.13333334
-      value: {fileID: 959167446, guid: beadde22e01b25140947220142c54a15, type: 3}
-    - time: 0.2
-      value: {fileID: 810441073, guid: beadde22e01b25140947220142c54a15, type: 3}
+      value: {fileID: 1485097731, guid: beadde22e01b25140947220142c54a15, type: 3}
     - time: 0.26666668
-      value: {fileID: 740702458, guid: beadde22e01b25140947220142c54a15, type: 3}
-    - time: 0.33333334
-      value: {fileID: 887530353, guid: beadde22e01b25140947220142c54a15, type: 3}
+      value: {fileID: -692290678, guid: beadde22e01b25140947220142c54a15, type: 3}
     - time: 0.4
-      value: {fileID: -317246750, guid: beadde22e01b25140947220142c54a15, type: 3}
-    - time: 0.46666667
-      value: {fileID: -499774141, guid: beadde22e01b25140947220142c54a15, type: 3}
+      value: {fileID: 1485097731, guid: beadde22e01b25140947220142c54a15, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -54,20 +46,16 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 2042429366, guid: beadde22e01b25140947220142c54a15, type: 3}
-    - {fileID: -552738262, guid: beadde22e01b25140947220142c54a15, type: 3}
-    - {fileID: 959167446, guid: beadde22e01b25140947220142c54a15, type: 3}
-    - {fileID: 810441073, guid: beadde22e01b25140947220142c54a15, type: 3}
-    - {fileID: 740702458, guid: beadde22e01b25140947220142c54a15, type: 3}
-    - {fileID: 887530353, guid: beadde22e01b25140947220142c54a15, type: 3}
-    - {fileID: -317246750, guid: beadde22e01b25140947220142c54a15, type: 3}
-    - {fileID: -499774141, guid: beadde22e01b25140947220142c54a15, type: 3}
+    - {fileID: 1924730873, guid: beadde22e01b25140947220142c54a15, type: 3}
+    - {fileID: 1485097731, guid: beadde22e01b25140947220142c54a15, type: 3}
+    - {fileID: -692290678, guid: beadde22e01b25140947220142c54a15, type: 3}
+    - {fileID: 1485097731, guid: beadde22e01b25140947220142c54a15, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.53333336
+    m_StopTime: 0.46666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
