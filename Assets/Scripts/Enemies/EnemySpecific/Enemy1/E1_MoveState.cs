@@ -31,7 +31,6 @@ public class E1_MoveState : MoveState
         }
         else if(isDetectingWall || !isDetectingLedge)
         {
-            //TODO: add transition to idle
             enemy.idleState.SetFlipAfterIdle(true);
             stateMachine.ChangeState(enemy.idleState);
         }

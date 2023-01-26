@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 210260267}
   - component: {fileID: 210260266}
   - component: {fileID: 210260265}
+  - component: {fileID: 210260269}
   m_Layer: 7
   m_Name: Alive
   m_TagString: Enemy
@@ -190,6 +191,7 @@ Transform:
   - {fileID: 122010834}
   - {fileID: 1930090459}
   - {fileID: 1377861525}
+  - {fileID: 353672036}
   m_Father: {fileID: 1913937082}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -312,6 +314,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &210260269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210260263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb00986d9649817419a639bd767afad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &224701413
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,6 +744,37 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &353672035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 353672036}
+  m_Layer: 7
+  m_Name: MeleeAttackPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &353672036
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353672035}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.03, y: -0.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 210260264}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &400289040
 GameObject:
   m_ObjectHideFlags: 0
@@ -43211,6 +43256,8 @@ MonoBehaviour:
   playerDetectedData: {fileID: 11400000, guid: ee92ae522b2a4e24e95f103c2f38d3cd, type: 2}
   chargeStateData: {fileID: 11400000, guid: 83ef6656f3f683341a3eb032bc9a874c, type: 2}
   lookForPlayerStateData: {fileID: 11400000, guid: 262b2ca4f08934a409a7063a0921e566, type: 2}
+  meleeAttackData: {fileID: 11400000, guid: 064678953c540a148aed4700ed2ed94a, type: 2}
+  meleeAttackPosition: {fileID: 353672036}
 --- !u!1 &1930090458
 GameObject:
   m_ObjectHideFlags: 0
