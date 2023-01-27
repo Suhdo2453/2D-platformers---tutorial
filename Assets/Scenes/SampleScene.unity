@@ -1263,7 +1263,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185619122}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.354, z: 0}
+  m_LocalPosition: {x: 0, y: -0.236, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43272,6 +43272,8 @@ MonoBehaviour:
   playerDetectedStateData: {fileID: 11400000, guid: 94314478314703442989132da2a1d30a, type: 2}
   meleeAttackStateData: {fileID: 11400000, guid: 0682d2ef4faef8d42965c67e54eee985, type: 2}
   lookForPlayerStateData: {fileID: 11400000, guid: 5fae1938dd901674595c59ed099287b1, type: 2}
+  stunStateData: {fileID: 11400000, guid: 80f3584a31b0edf4fb325ec897246f40, type: 2}
+  deadStateData: {fileID: 11400000, guid: c72db3bebf3ea1746b19df1315e92e2d, type: 2}
   meleeAttackPosition: {fileID: 1685600672}
 --- !u!4 &1823655462
 Transform:
@@ -43281,7 +43283,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823655460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.25, y: 8.48, z: 0}
+  m_LocalPosition: {x: 1.71, y: 8.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
