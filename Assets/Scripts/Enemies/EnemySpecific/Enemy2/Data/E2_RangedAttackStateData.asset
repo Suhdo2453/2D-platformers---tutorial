@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f897f48136693ff4490342e6bad0a5a0, type: 3}
-  m_Name: E2_PlayerDetectedStateData
+  m_Script: {fileID: 11500000, guid: 7d5d5e5602285494a8791f0003ba4e00, type: 3}
+  m_Name: E2_RangedAttackStateData
   m_EditorClassIdentifier: 
-  longRangeActionTime: 1
+  projectile: {fileID: 546348451311663165, guid: 610a4bf9aba46284587792907411f45c, type: 3}
+  projectileDamage: 10
+  projectileSpeed: 15
+  projectileTravelDistance: 8
