@@ -172,6 +172,7 @@ MonoBehaviour:
   inputTimer: 0.2
   attack1Radius: 0.8
   attack1Damage: 10
+  stunDamageAmount: 1
   attack1HitBoxPos: {fileID: 5486264443748687028}
   whatIsDamageable:
     serializedVersion: 2
