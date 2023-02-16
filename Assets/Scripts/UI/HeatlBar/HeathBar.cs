@@ -33,6 +33,10 @@ public class HeathBar : MonoBehaviour
             {
                 g.fillAmount = 0;
             }
+            else
+            {
+                g.fillAmount = 1;
+            }
             ++i;
         }
     }

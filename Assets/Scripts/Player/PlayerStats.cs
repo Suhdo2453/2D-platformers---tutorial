@@ -43,4 +43,10 @@ public class PlayerStats : MonoBehaviour
         GM.Respawn();
         Destroy(gameObject);
     }
+
+    public void AddHealth(float value)
+    {
+        if (currentHealth == maxHealth) return;
+        currentHealth += value;
+    }
 }
