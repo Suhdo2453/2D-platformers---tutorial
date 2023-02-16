@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -59,4 +60,7 @@ TagManager:
     locked: 0
   - name: Foreground_Decoration
     uniqueID: 3453631391
+    locked: 0
+  - name: UI
+    uniqueID: 1109915907
     locked: 0

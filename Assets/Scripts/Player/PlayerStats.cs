@@ -12,13 +12,17 @@ public class PlayerStats : MonoBehaviour
         deathChunkParticle,
         deathBloodParticle;
 
-    private float currentHealth;
+    public float currentHealth { get; private set; }
 
     private GameManager GM;
 
-    private void Start()
+    private void Awake()
     {
         currentHealth = maxHealth;
+    }
+
+    private void Start()
+    {
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
