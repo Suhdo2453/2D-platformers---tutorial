@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     public float groundCheckRadius;
     public int amountOfJumps = 1;
     public float jumpTimerSet = 0.15f;
+    public AudioSource jumpSound;
     private bool canNormalJump;
     private bool canWallJump;
     private int amountOfJumpLeft;
@@ -262,6 +263,7 @@ public class PlayerController : MonoBehaviour
             if(isGrounded || (amountOfJumpLeft > 0 && isTouchingWall))
             {
                 NormalJump();
+                jumpSound.Play();
             }
             else
             {
