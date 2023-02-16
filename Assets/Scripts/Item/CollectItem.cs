@@ -9,6 +9,8 @@ public class CollectItem : MonoBehaviour
     private Text itemCountTxt;
 
     private int itemCount = 0;
+    [SerializeField]
+    private AudioSource audioSource;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,6 +18,11 @@ public class CollectItem : MonoBehaviour
         {
             Destroy(collision.gameObject);
             itemCountTxt.text = ++itemCount + "/10";
+            audioSource.Play();
+        }else if (collision.CompareTag("HealthReponse"))
+        {
+            audioSource.Play();
+
         }
     }
 }

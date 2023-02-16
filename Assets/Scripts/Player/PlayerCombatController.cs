@@ -14,6 +14,8 @@ public class PlayerCombatController : MonoBehaviour
     private Transform attack1HitBoxPos;
     [SerializeField]
     private LayerMask whatIsDamageable;
+    [SerializeField]
+    private AudioSource attackSound;
 
     private bool gotInput, isAttacking, isFirstAttack;
 
@@ -118,6 +120,11 @@ public class PlayerCombatController : MonoBehaviour
 
             PC.Knockback(direction);
         }
+    }
+
+    private void PlaySound()
+    {
+        attackSound.Play();
     }
 
     private void OnDrawGizmos()

@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     //move
     [Header("Movement")]
     public float movementSpeed = 10f;
+    public  AudioSource stepSound;
     private Rigidbody2D rb;
     private float movementInputDirection;
     private bool isFacingRight = true;
@@ -115,6 +116,7 @@ public class PlayerController : MonoBehaviour
         CheckLedgeClimb();
         CheckDash();
         CheckKnockback();
+        SoundManager();
     }
 
     private void FixedUpdate()
@@ -457,5 +459,20 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + wallCheckDistance * facingDirection, wallCheck.position.y));
+    }
+
+    private void SoundManager()
+    {
+        if (isWalking)
+        {
+            if (!stepSound.isPlaying)
+            {
+                stepSound.Play();
+            }
+        }
+        else
+        {
+            stepSound.Stop();
+        }
     }
 }
