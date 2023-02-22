@@ -9,16 +9,24 @@ public class Player : MonoBehaviour
 
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
-    public Rigidbody2D RB { get; private set; }
+    public PlayerJumpState JumpState { get; private set; }
+    public PlayerInAirState InAirState { get; private set; }
+    public PlayerLandState LandState { get; private set; }
 
     [SerializeField]
     private PlayerData playerData;
     #endregion
 
     #region Components
+    public Rigidbody2D RB { get; private set; }
     public Animator Anim { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
 
+    #endregion
+
+    #region Check Transforms
+    [SerializeField]
+    private Transform groundCheck;
     #endregion
 
     #region Other Variables
@@ -35,6 +43,9 @@ public class Player : MonoBehaviour
 
         IdleState = new PlayerIdleState(this, StateMachine, playerData, "idle");
         MoveState = new PlayerMoveState(this, StateMachine, playerData, "move");
+        JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
+        InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
+        LandState = new PlayerLandState(this, StateMachine, playerData, "land");
     }
 
     private void Start()
@@ -70,6 +81,13 @@ public class Player : MonoBehaviour
         CurrentVelocity = workSpaceVector;
     }
 
+    public void SetVelocityY(float velocity)
+    {
+        workSpaceVector.Set(CurrentVelocity.x, velocity);
+        RB.velocity = workSpaceVector;
+        CurrentVelocity = workSpaceVector;
+    }
+
     #endregion
 
     #region Check Funtions
@@ -81,13 +99,27 @@ public class Player : MonoBehaviour
         }
     }
 
+    public  bool CheckIfGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, playerData.groundCheckRadius, playerData.whatIsGround);
+    }
+
     #endregion
 
     #region Other Functions
+
+    private void AnimationTrigger() => StateMachine.currentState.AnimationTrigger();
+    private void AnimationFinishTrigger() => StateMachine.currentState.AnimationFinishTrigger();
+
     private void Flip()
     {
         FacingDirection *= -1;
         transform.Rotate(0.0f, 180.0f, 0.0f);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(groundCheck.position, playerData.groundCheckRadius);
     }
 
     #endregion
