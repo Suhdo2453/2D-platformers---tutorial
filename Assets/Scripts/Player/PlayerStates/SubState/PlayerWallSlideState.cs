@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerWallSlideState : PlayerTounchingWallState
 {
-    public PlayerWallSlideState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
+    public PlayerWallSlideState(Player player, PlayerStateMachine stateMachine, PlayerData playerData,
+        string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
     }
 
@@ -12,11 +13,14 @@ public class PlayerWallSlideState : PlayerTounchingWallState
     {
         base.LogicUpdate();
 
-        player.SetVelocityY(-playerData.wallSlideVelocity);
-
-        if(grabInput && yInput == 0 && !isExitingState)
+        if (!isExitingState)
         {
-            stateMachine.ChangeState(player.WallGrabState);
+            player.SetVelocityY(-playerData.wallSlideVelocity);
+
+            if (grabInput && yInput == 0)
+            {
+                stateMachine.ChangeState(player.WallGrabState);
+            }
         }
     }
 }
