@@ -8,45 +8,15 @@ public class PlayerWallClimbState : PlayerTounchingWallState
     {
     }
 
-    public override void AnimationFinishTrigger()
-    {
-        base.AnimationFinishTrigger();
-    }
-
-    public override void AnimationTrigger()
-    {
-        base.AnimationTrigger();
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
         player.SetVelocityY(playerData.wallSlideVelocity);
 
-        if(yInput != 1)
+        if(yInput != 1 && !isExitingState)
         {
             stateMachine.ChangeState(player.WallGrabState);
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 }

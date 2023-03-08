@@ -14,7 +14,7 @@ public class PlayerWallSlideState : PlayerTounchingWallState
 
         player.SetVelocityY(-playerData.wallSlideVelocity);
 
-        if(grabInput && yInput == 0)
+        if(grabInput && yInput == 0 && !isExitingState)
         {
             stateMachine.ChangeState(player.WallGrabState);
         }

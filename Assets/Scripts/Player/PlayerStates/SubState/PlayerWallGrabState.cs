@@ -44,14 +44,18 @@ public class PlayerWallGrabState : PlayerTounchingWallState
 
         HoldPosition();
 
-        if (yInput > 0)
+        if (!isExitingState)
         {
-            stateMachine.ChangeState(player.WallClimbState);
+            if (yInput > 0)
+            {
+                stateMachine.ChangeState(player.WallClimbState);
+            }
+            else if (yInput < 0 || !grabInput)
+            {
+                stateMachine.ChangeState(player.WallSlideState);
+            }
         }
-        else if (yInput < 0 || !grabInput)
-        {
-            stateMachine.ChangeState(player.WallSlideState);
-        }
+        
     }
 
     private void HoldPosition()
