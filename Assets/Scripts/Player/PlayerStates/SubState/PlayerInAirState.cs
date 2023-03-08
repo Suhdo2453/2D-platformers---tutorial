@@ -6,14 +6,16 @@ public class PlayerInAirState : PlayerState
 {
     private bool isGrounded;
     private bool isTouchingWall;
+    private bool isTouchingWallBack;
     private int xInput;
     private bool jumpInput;
     private bool jumpInputStop;
     private bool coyoteTime;
     private bool isJumping;
     private bool grabInput;
-    
-    public PlayerInAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
+
+    public PlayerInAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName)
+        : base(player, stateMachine, playerData, animBoolName)
     {
     }
 
@@ -23,12 +25,12 @@ public class PlayerInAirState : PlayerState
 
         isGrounded = player.CheckIfGrounded();
         isTouchingWall = player.CheckIfTouchingWall();
+        isTouchingWallBack = player.CheckIfTouchingWallBack();
     }
 
     public override void Enter()
     {
         base.Enter();
-
     }
 
     public override void Exit()
@@ -53,16 +55,21 @@ public class PlayerInAirState : PlayerState
         {
             stateMachine.ChangeState(player.LandState);
         }
-        else if(jumpInput && player.JumpState.CanJump())
+        else if (jumpInput && (isTouchingWall || isTouchingWallBack))
+        {
+            player.WallJumpState.DetermineWallJumpDirection(isTouchingWall);
+            stateMachine.ChangeState(player.WallJumpState);
+        }
+        else if (jumpInput && player.JumpState.CanJump())
         {
             player.InputHandler.UseJumpInput();
             stateMachine.ChangeState(player.JumpState);
         }
-        else if(isTouchingWall && grabInput)
+        else if (isTouchingWall && grabInput)
         {
             stateMachine.ChangeState(player.WallGrabState);
         }
-        else if(isTouchingWall && xInput == player.FacingDirection && player.CurrentVelocity.y <= 0)
+        else if (isTouchingWall && xInput == player.FacingDirection && player.CurrentVelocity.y <= 0)
         {
             stateMachine.ChangeState(player.WallSlideState);
         }

@@ -14,6 +14,7 @@ public class PlayerJumpState : PlayerAbilityState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("Jump");
         player.SetVelocityY(playerData.jumpVelocity);
         isAbilityDone = true;
         amountOfJumpLeft--;
@@ -22,14 +23,7 @@ public class PlayerJumpState : PlayerAbilityState
 
     public bool CanJump()
     {
-        if(amountOfJumpLeft > 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return amountOfJumpLeft > 0;
     }
 
     public void ResetAmountOfJumpLeft() => amountOfJumpLeft = playerData.amountOfJumps;
