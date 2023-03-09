@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class PlayerInAirState : PlayerState
 {
+    //Input
+    private int xInput;
+    private bool jumpInput;
+    private bool jumpInputStop;
+    private bool dashInput;
+    private bool grabInput;
+
+    //Checks
     private bool isGrounded;
     private bool isTouchingWall;
     private bool isTouchingWallBack;
     private bool oldIsTouchingWall;
     private bool oldIsTouchingWallBack;
-    private int xInput;
-    private bool jumpInput;
-    private bool jumpInputStop;
+    private bool isTouchingLedge;
+
     private bool coyoteTime;
     private bool wallJumpCoyoteTime;
     private bool isJumping;
-    private bool grabInput;
-    private bool isTouchingLedge;
+
 
     private float startWallJumpCoyoteTime;
 
@@ -31,7 +37,7 @@ public class PlayerInAirState : PlayerState
 
         oldIsTouchingWall = isTouchingWall;
         oldIsTouchingWallBack = isTouchingWallBack;
-        
+
         isGrounded = player.CheckIfGrounded();
         isTouchingWall = player.CheckIfTouchingWall();
         isTouchingWallBack = player.CheckIfTouchingWallBack();
@@ -75,6 +81,7 @@ public class PlayerInAirState : PlayerState
         jumpInput = player.InputHandler.JumpInput;
         jumpInputStop = player.InputHandler.JumpInputStop;
         grabInput = player.InputHandler.GrabInput;
+        dashInput = player.InputHandler.DashInput;
 
         CheckJumpMultiplier();
 
@@ -104,6 +111,10 @@ public class PlayerInAirState : PlayerState
         else if (isTouchingWall && xInput == player.FacingDirection && player.CurrentVelocity.y <= 0)
         {
             stateMachine.ChangeState(player.WallSlideState);
+        }
+        else if (dashInput && player.DashState.CheckIfCanDash())
+        {
+            stateMachine.ChangeState(player.DashState);
         }
         else
         {
@@ -159,7 +170,8 @@ public class PlayerInAirState : PlayerState
     {
         wallJumpCoyoteTime = true;
         startWallJumpCoyoteTime = Time.time;
-    } 
+    }
+
     public void StopWallJumpCoyoteTime() => wallJumpCoyoteTime = false;
 
     public void SetIsJumping() => isJumping = true;
