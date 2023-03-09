@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     public Rigidbody2D RB { get; private set; }
     public Animator Anim { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
+    public Transform DashDirectionIndicator { get; private set; }
 
     #endregion
 
@@ -71,6 +72,7 @@ public class Player : MonoBehaviour
         Anim = GetComponent<Animator>();
         InputHandler = GetComponent<PlayerInputHandler>();
         RB = GetComponent<Rigidbody2D>();
+        DashDirectionIndicator = transform.Find("DashDirectionIndicator");
 
         FacingDirection = 1;
 
@@ -102,6 +104,13 @@ public class Player : MonoBehaviour
     {
         angle.Normalize();
         workSpaceVector.Set(angle.x * velocity * direction, angle.y * velocity);
+        RB.velocity = workSpaceVector;
+        CurrentVelocity = workSpaceVector;
+    }
+
+    public void SetVelocity(float velocity, Vector2 direction)
+    {
+        workSpaceVector = direction * velocity;
         RB.velocity = workSpaceVector;
         CurrentVelocity = workSpaceVector;
     }
