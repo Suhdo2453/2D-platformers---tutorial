@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerGroundedState : PlayerState
 {
     protected int xInput;
+    protected int yInput;
+
+    protected bool isTouchingCeilling;
 
     private bool JumpInput;
     private bool grabInput;
@@ -24,6 +27,7 @@ public class PlayerGroundedState : PlayerState
         isGrounded = player.CheckIfGrounded();
         isTouchingWall = player.CheckIfTouchingWall();
         isTouchingLedge = player.CheckIfTouchingLedge();
+        isTouchingCeilling = player.CheckForCeilling();
     }
 
     public override void Enter()
@@ -44,11 +48,12 @@ public class PlayerGroundedState : PlayerState
         base.LogicUpdate();
 
         xInput = player.InputHandler.NormInputX;
+        yInput = player.InputHandler.NormInputY;
         JumpInput = player.InputHandler.JumpInput;
         grabInput = player.InputHandler.GrabInput;
         dashInput = player.InputHandler.DashInput;
 
-        if (JumpInput && player.JumpState.CanJump())
+        if (JumpInput && player.JumpState.CanJump() && !isTouchingCeilling)
         {
             stateMachine.ChangeState(player.JumpState);
         }
@@ -61,7 +66,7 @@ public class PlayerGroundedState : PlayerState
         {
             stateMachine.ChangeState(player.WallGrabState);
         }
-        else if (dashInput && player.DashState.CheckIfCanDash())
+        else if (dashInput && player.DashState.CheckIfCanDash() && !isTouchingCeilling)
         {
             stateMachine.ChangeState(player.DashState);
         }
