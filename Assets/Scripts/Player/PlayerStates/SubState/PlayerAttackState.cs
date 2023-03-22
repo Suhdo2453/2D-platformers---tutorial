@@ -6,8 +6,12 @@ public class PlayerAttackState : PlayerAbilityState
 {
     private Weapon weapon;
 
+    private int xInput;
+
     private float velocityToSet;
+
     private bool setVelocity;
+    private bool shouldCheckFlip;
 
     public PlayerAttackState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName)
         : base(player, stateMachine, playerData, animBoolName)
@@ -19,13 +23,20 @@ public class PlayerAttackState : PlayerAbilityState
         base.Enter();
 
         setVelocity = false;
-        
+
         weapon.EnterWeapon();
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        if (shouldCheckFlip)
+        {
+            xInput = player.InputHandler.NormInputX;
+        }
+
+        player.CheckIfShouldFlip(xInput);
 
         if (setVelocity)
         {
@@ -61,6 +72,11 @@ public class PlayerAttackState : PlayerAbilityState
 
         velocityToSet = velocity;
         setVelocity = true;
+    }
+
+    public void SetFlipCheck(bool value)
+    {
+        shouldCheckFlip = value;
     }
 
     #endregion
