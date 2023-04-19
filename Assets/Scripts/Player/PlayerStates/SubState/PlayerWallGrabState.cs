@@ -61,8 +61,8 @@ public class PlayerWallGrabState : PlayerTounchingWallState
     {
         player.transform.position = holdPostion;
 
-        player.SetVelocityX(0f);
-        player.SetVelocityY(0f);
+        core.Movement.SetVelocityX(0f);
+        core.Movement.SetVelocityY(0f);
     }
 
     public override void PhysicsUpdate()
